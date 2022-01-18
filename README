@@ -1,8 +1,5 @@
-A Google Chrome extension that shows the current URL as a QR code.
-
-Available in Google Web Store: https://chrome.google.com/webstore/detail/qr-code/leicjbimaiecjfljbeikdailcmaadlml
-
-I often use this to quickly copy a URL to my smartphone.
+A Google Chrome extension created to show an inline QR code.
+I added some features for removing undesired html elements for the use of website on Karsten stores (intent to be just a kiosk catalog).
 
 It uses Kazuhiko Arases javascript library (http://www.d-project.com/) to
 draw the QR codes instead of relying on some third-party web API (like
@@ -20,6 +17,4 @@ Building:
     gem install crxmake
     ./pack.rb
 
-Author: Felix Kaiser <felix.kaiser@fxkr.net>
 License: MIT (see LICENSE)
-

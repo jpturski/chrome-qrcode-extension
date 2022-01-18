@@ -1,19 +1,37 @@
 {
   "manifest_version": 2,
-
-  "name": "QR-Code",
-  "description": "Show a QR-Code for the current URL (without relying on some third-party API).",
+  "name": "Karsten QR-Code",
+  "description": "Mostra o QR Code na PDP da Karsten e Trussardi.",
   "version": "1.0.0",
-  "homepage_url": "https://github.com/fxkr/chrome-qrcode-extension",
+  "homepage_url": "https://github.com/jpturski/chrome-qrcode-extension",
   "icons": {
     "16": "icon-16x16.png",
     "48": "icon-48x48.png",
-    "128": "icon-128x128.png" },
-
-  "permissions": [ "tabs" ],
+    "128": "icon-128x128.png"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
   "offline_enabled": true,
   "browser_action": {
     "default_icon": "icon-16x16.png",
     "default_popup": "popup.html"
-  }
+  },
+  "content_scripts": [
+    {
+      "run_at": "document_idle",
+      "matches": [
+        "http://*.karsten.com.br/*",
+        "https://*.karsten.com.br/*",
+        "http://*.trussardi.com.br/*",
+        "https://*.trussardi.com.br/*"
+      ],
+      "css": [],
+      "js": [
+        "qrcode.js",
+        "contentScript.js"
+      ]
+    }
+  ]
 }

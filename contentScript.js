@@ -33,22 +33,32 @@ var createQrCodeImage = function (payload) {
 var createInlineQrCodeOnPage = function () {
     try {
         var localsToRender = document.getElementsByClassName("vtex-flex-layout-0-x-flexColChild vtex-flex-layout-0-x-flexColChild--info-product pb0");
+
         var qrCodeAreaToRender = null;
 
         if (localsToRender.length > 0) {
+
             for (var x = 0; x < localsToRender.length; x++) {
-                if (localsToRender[x].children.length == 0)
+                if (localsToRender[x].children == null || localsToRender[x].children.length == 0)
                     qrCodeAreaToRender = localsToRender[x];
+            }
+
+            if (qrCodeAreaToRender == null) //significa que é o layout responsivo e o botao fica em outro lugar
+            {
+                $(document.querySelector("body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(2) > div > section > div > div > div > div:nth-child(2) > div > div:nth-child(6)")).append("<div id='qrCodePDP' style='margin-bottom:10px'></div>");
+                qrCodeAreaToRender = document.getElementById("qrCodePDP");
             }
         }
 
         var skuExtracted = null;
 
         if (location.pathname != null) {
-            var parts = location.pathname.replace("/p", "").replace("/", "").split("-");
+            var parts = location.pathname.split("-");
 
             if (parts.length > 0) {
                 skuExtracted = parts[parts.length - 1];
+                skuExtracted = skuExtracted.replace("/p", "").replace("/", "")
+
                 if (isNaN(skuExtracted))
                     skuExtracted = null;
             }
@@ -95,7 +105,6 @@ var removeButtonsAddCart = function () {
             for (var x = 0; x < btnsComprar.length; x++)
                 btnsComprar[x].remove();
         }
-
 
     } catch (e) {
     }

@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Karsten Modo Kiosk",
   "description": "Mostra o QR Code na PDP da Karsten e Trussardi.",
   "version": "1.0.0",
@@ -14,13 +14,9 @@
     "activeTab"
   ],
   "offline_enabled": true,
-  "browser_action": {
-    "default_icon": "icon-16x16.png",
-    "default_popup": "popup.html"
-  },
   "content_scripts": [
     {
-      "run_at": "document_idle",
+      "run_at": "document_start",
       "matches": [
         "http://*.karsten.com.br/*",
         "https://*.karsten.com.br/*",
